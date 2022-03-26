@@ -2,7 +2,7 @@ INCOME_TAX = {
     12570: 0,
     50270: 0.2,
     150000: 0.4,
-    float('inf'): 0.5,
+    float('inf'): 0.45,
 }
 
 NATIONAL_INSURANCE = {
