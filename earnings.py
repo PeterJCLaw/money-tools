@@ -12,8 +12,6 @@ def earnings_from_tax(rates, tax):
     for (rate, level) in ordered_rates(rates):
         max_tax = level * rate	# at this band
 
-#		print rate, level, max_tax, tax
-
         if tax > max_tax:
             tax -= max_tax
             earn += level
