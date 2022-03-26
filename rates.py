@@ -12,4 +12,5 @@ NATIONAL_INSURANCE = {
 }
 
 def ordered_rates(rates):
-    return sorted(rates.items())
+    for level in sorted(rates.keys()):
+        yield rates[level], level
