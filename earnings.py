@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 
 import sys
-from rates import orderedRates, income_tax
+from rates import ordered_rates, INCOME_TAX
 
-def earningsFromTax(rates, tax):
+def earnings_from_tax(rates, tax):
     if tax == 0:
-        return "Up to %s" % rates[0]
+        return f"Up to {rates[0]}"
 
     earn = 0
 
-    for (rate, level) in orderedRates(rates):
+    for (rate, level) in ordered_rates(rates):
         max_tax = level * rate	# at this band
 
 #		print rate, level, max_tax, tax
@@ -25,6 +25,6 @@ def earningsFromTax(rates, tax):
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print 'Usage: earnings TAX'
+        print("Usage: earnings TAX")
         exit(1)
-    print earningsFromTax(income_tax, int(sys.argv[1]))
+    print(earnings_from_tax(INCOME_TAX, int(sys.argv[1])))

@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
 import sys
-from rates import income_tax, orderedRates
+from rates import INCOME_TAX, ordered_rates
 
-def taxFromEarnings(rates, earn):
+def tax_from_earnings(rates, earn):
     tax = 0
 
-    for (rate, level) in orderedRates(rates):
+    for (rate, level) in ordered_rates(rates):
         left = earn - level
         if left > 0:
             earn = left
@@ -19,6 +19,6 @@ def taxFromEarnings(rates, earn):
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print 'Usage: tax EARNINGS'
+        print("Usage: tax EARNINGS")
         exit(1)
-    print taxFromEarnings(income_tax, int(sys.argv[1]))
+    print(tax_from_earnings(INCOME_TAX, int(sys.argv[1])))
