@@ -4,6 +4,7 @@ import collections
 import csv
 import datetime
 from decimal import Decimal
+from pathlib import Path
 from typing import Mapping
 
 import dateutil.parser
@@ -115,8 +116,9 @@ def compute(
     return value.quantize(Decimal('0.01'))
 
 
+MY_DIR = Path(__file__).parent
 # https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp
-with open('Downloads/Bank Rate history and data Bank of England Database.csv') as f:
+with (MY_DIR / 'Bank Rate history and data Bank of England Database.csv').open() as f:
     reader = csv.DictReader(f)
     bank_of_england_rates = collections.OrderedDict(
         reversed([parse_line(x) for x in reader]),
