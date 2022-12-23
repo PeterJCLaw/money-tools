@@ -102,8 +102,9 @@ def compute(
     time.
 
     While the rates may change at any time, interest is computed monthly using
-    the rate value from the first of the month. For interest calculations,
-    months are assumed to evenly split the year.
+    the rate value from the first of the month. Rate changes within a month may
+    thus be ignored. For interest calculations, months are assumed to evenly
+    split the year.
 
     The result is quantised only at the end, not between adding interest.
     """
