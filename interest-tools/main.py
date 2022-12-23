@@ -91,11 +91,27 @@ def rate_at(
     return rate
 
 
-def compute(start, end, rates, principal=100):
+def compute(
+    start: datetime.date,
+    end: datetime.date,
+    rates: Mapping[datetime.date, Decimal],
+    principal: int | Decimal = 100,
+) -> Decimal:
+    """
+    Compute the result of applying a changing interest rate on a principal over
+    time.
+
+    While the rates may change at any time, interest is computed monthly using
+    the rate value from the first of the month. For interest calculations,
+    months are assumed to evenly split the year.
+
+    The result is quantised only at the end, not between adding interest.
+    """
+    value = Decimal(principal)
     for month in itermonths(start, end):
         rate = rate_at(rates, month)
-        principal = with_interest(principal, rate, th_of_year=12)
-    return principal.quantize(Decimal('0.01'))
+        value = with_interest(value, rate, th_of_year=12)
+    return value.quantize(Decimal('0.01'))
 
 
 with open('Downloads/Bank Rate history and data Bank of England Database.csv') as f:
