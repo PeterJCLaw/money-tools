@@ -114,6 +114,7 @@ def compute(
     return value.quantize(Decimal('0.01'))
 
 
+# https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp
 with open('Downloads/Bank Rate history and data Bank of England Database.csv') as f:
     reader = csv.DictReader(f)
     bank_of_england_rates = collections.OrderedDict(
