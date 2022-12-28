@@ -5,7 +5,7 @@ import csv
 import datetime
 from decimal import Decimal
 from pathlib import Path
-from typing import Mapping
+from typing import Callable, Mapping
 
 import dateutil.parser
 
@@ -114,6 +114,16 @@ def compute(
         rate = rate_at(rates, month)
         value = with_interest(value, rate, th_of_year=12)
     return value.quantize(Decimal('0.01'))
+
+
+def adjust_rates(
+    rates: Mapping[datetime.date, Decimal],
+    adjust: Callable[[Decimal], Decimal],
+) -> Mapping[datetime.date, Decimal]:
+    """
+    Apply an adjustment to each of the given rates.
+    """
+    return collections.OrderedDict((x, adjust(y)) for x, y in rates.items())
 
 
 MY_DIR = Path(__file__).parent
