@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 import sys
-from tax import tax_from_earnings
+
 from rates import NATIONAL_INSURANCE
+from tax import tax_from_earnings
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:

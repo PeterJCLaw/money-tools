@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 import sys
+
 from rates import INCOME_TAX, ordered_rates
+
 
 def tax_from_earnings(rates, earn):
     tax = 0
@@ -11,11 +13,12 @@ def tax_from_earnings(rates, earn):
         if left > 0:
             earn = left
             tax += level * rate
-        else:	# they're in this band
+        else:  # they're in this band
             tax += earn * rate
             break
 
     return tax
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:

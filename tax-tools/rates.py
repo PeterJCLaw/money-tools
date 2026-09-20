@@ -13,6 +13,7 @@ NATIONAL_INSURANCE = {
     float('inf'): Decimal('0.02'),
 }
 
+
 def ordered_rates(rates):
     for level in sorted(rates.keys()):
         yield rates[level], level
