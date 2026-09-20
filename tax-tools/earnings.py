@@ -28,4 +28,5 @@ if __name__ == '__main__':
     if len(sys.argv) != 2:
         print("Usage: earnings TAX")
         exit(1)
+
     print(earnings_from_tax(INCOME_TAX, int(sys.argv[1])))
