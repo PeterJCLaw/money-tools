@@ -1,14 +1,16 @@
+from decimal import Decimal
+
 INCOME_TAX = {
-    12570: 0,
-    50270: 0.2,
-    125470: 0.4,
-    float('inf'): 0.45,
+    12570: Decimal(0),
+    50270: Decimal('0.2'),
+    125470: Decimal('0.4'),
+    float('inf'): Decimal('0.45'),
 }
 
 NATIONAL_INSURANCE = {
-    12570: 0,
-    50270: 0.08,
-    float('inf'): 0.02,
+    12570: Decimal(0),
+    50270: Decimal('0.08'),
+    float('inf'): Decimal('0.02'),
 }
 
 def ordered_rates(rates):
