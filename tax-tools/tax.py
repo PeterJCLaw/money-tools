@@ -4,6 +4,8 @@ import sys
 
 from rates import INCOME_TAX, INCOME_TAX_TAPER_THRESHOLD, ordered_bands
 
+VERBOSE = False
+
 
 def taper_rates(rates, earn, taper_threshold):
     allowance_loss = max(earn - taper_threshold, 0) // 2
@@ -25,8 +27,12 @@ def tax_from_earnings(rates, earn):
         left = earn - band
         if left > 0:
             earn = left
+            if VERBOSE:
+                print(f"{band} @ {rate*100:>4}% = {band * rate}")
             tax += band * rate
         else:  # they're in this band
+            if VERBOSE:
+                print(f"{earn} @ {rate*100:>4}% = {earn * rate}")
             tax += earn * rate
             break
 
