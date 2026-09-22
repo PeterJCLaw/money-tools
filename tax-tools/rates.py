@@ -1,3 +1,4 @@
+import itertools
 from decimal import Decimal
 
 INCOME_TAX = {
@@ -19,3 +20,8 @@ INCOME_TAX_TAPER_THRESHOLD = 100_000
 def ordered_rates(rates):
     for level in sorted(rates.keys()):
         yield rates[level], level
+
+
+def ordered_bands(rates):
+    for bottom, top in itertools.pairwise((0, *rates.keys())):
+        yield rates[top], (bottom, top)

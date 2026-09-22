@@ -2,7 +2,7 @@
 
 import sys
 
-from rates import INCOME_TAX, INCOME_TAX_TAPER_THRESHOLD, ordered_rates
+from rates import INCOME_TAX, INCOME_TAX_TAPER_THRESHOLD, ordered_bands
 
 
 def taper_rates(rates, earn, taper_threshold):
@@ -20,11 +20,12 @@ def taper_rates(rates, earn, taper_threshold):
 def tax_from_earnings(rates, earn):
     tax = 0
 
-    for (rate, level) in ordered_rates(rates):
-        left = earn - level
+    for rate, (bottom, top) in ordered_bands(rates):
+        band = top - bottom
+        left = earn - band
         if left > 0:
             earn = left
-            tax += level * rate
+            tax += band * rate
         else:  # they're in this band
             tax += earn * rate
             break
