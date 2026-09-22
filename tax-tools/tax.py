@@ -7,6 +7,7 @@ from rates import INCOME_TAX, INCOME_TAX_TAPER_THRESHOLD, ordered_rates
 
 def taper_rates(rates, earn, taper_threshold):
     allowance_loss = max(earn - taper_threshold, 0) // 2
+    allowance_loss = min(allowance_loss, *rates.keys())
 
     def adjust_threshold(rate_threshold):
         if rate_threshold < taper_threshold:
