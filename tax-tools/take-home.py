@@ -4,7 +4,7 @@ import sys
 from decimal import Decimal
 
 from rates import INCOME_TAX, NATIONAL_INSURANCE
-from tax import tax_from_earnings
+from tax import tapered_tax_from_earnings, tax_from_earnings
 
 
 def quantize_gbp(value: Decimal) -> Decimal:
@@ -16,7 +16,7 @@ if __name__ == '__main__':
         exit(1)
 
     earnings = int(sys.argv[1])
-    tax = tax_from_earnings(INCOME_TAX, earnings)
+    tax = tapered_tax_from_earnings(INCOME_TAX, earnings)
     ni = tax_from_earnings(NATIONAL_INSURANCE, earnings)
     print(f"Tax: {quantize_gbp(tax):>10}")
     print(f"NI:  {quantize_gbp(ni):>10}")
